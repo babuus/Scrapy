@@ -43,9 +43,6 @@ class uk_currys:
 
         img_download = { 'main_image': main_image,'images_url':all_images_url,'file_name':self.file_name,'category':category,'product_code':product_code}
         image_names = parse_images(**img_download)
-        #print("all_images_url",all_images_url)
-        #main_image = all_images_url[0]
-        #print("main_image",main_image)
         features = []
         for feature in response.xpath('//*[@id="product-main"]/div/div/div/div/div/ul[@class="to-print"]/li/text()'):
             features.append(feature.get())
@@ -79,26 +76,9 @@ def parse_images(**kwargs):
     k=0
     image_names = []
     for url in urls:
-        #r = requests.get(url, stream = True)
-        #r.raw.decode_content = True
         parent_dir = "G:\Corvid"
-        # parent_dir = "/home/sunil"
-        #path = os.path.join(parent_dir, folder_location)
-        # all_image_path = os.path.join(parent_dir, folder_location, category,product_code,"/All_images")
-        # main_image_path = os.path.join(parent_dir, folder_location, category,product_code,"/Main_image")
-        #
-        # isdirall = os.path.isdir(all_image_path)
-        # isdirmain = os.path.isdir(main_image_path)
-        #
-        # if not isdirall:
-        #     os.mkdir(all_image_path)
-        # if not isdirmain:
-        #     os.mkdir(main_image_path)
         Img_name = folder_location+'_'+category+'_'+product_code+'_'+str(k)+'.jpg'
 
         image_names.append(Img_name)
         k +=1
-        #filename = parent_dir+'/'+folder_location+'/'+Img_name
-        #with open(filename,'wb') as f:
-        #    shutil.copyfileobj(r.raw, f)
     return image_names
